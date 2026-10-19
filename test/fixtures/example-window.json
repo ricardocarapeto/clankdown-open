@@ -1,0 +1,22 @@
+{
+  "draw_json": "{\"v\":1,\"k\":3,\"seed\":\"4f1c9a7e2b6d8035a1e4c7b9d2f60a18\",\"slots\":[{\"slot\":\"A\",\"familyId\":\"example-family-1\",\"templateId\":\"example-template-1\",\"version\":2,\"edition\":3},{\"slot\":\"B\",\"familyId\":\"example-family-2\",\"templateId\":\"example-template-2\",\"version\":1,\"edition\":1},{\"slot\":\"C\",\"familyId\":\"example-family-3\",\"templateId\":\"example-template-3\",\"version\":1}],\"rules\":{\"newFamilyMin\":1}}",
+  "salt": "9b2e71c04d5a3f86e0c1b7a29d4f6e53",
+  "draw_commit": "81a330c65e387d6f730f4bae84aba07fa8685bb29dc26cd5dcfc1d01f2633ecc",
+  "seeds": [
+    {
+      "slot": "A",
+      "seed": "e3.7a1f0c9e5b2d48a6",
+      "seed_commit": "ea770af45d08bb785691593c7bb5466e60803708dee6619c9a2b5f012832060c"
+    },
+    {
+      "slot": "B",
+      "seed": "e1.c04e9b7a21f3d856",
+      "seed_commit": "0a785ddb48d52dbe9b67af9c060d6a52d3eee2a5fd955b1f90377d8126f42c8b"
+    },
+    {
+      "slot": "C",
+      "seed": "5d2a8e1f7c3b9046",
+      "seed_commit": "15ae7043303efe84b21bec482d9a468e9ae9906a4b078b35490aa769b2291590"
+    }
+  ]
+}

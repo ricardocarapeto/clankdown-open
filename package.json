@@ -1,0 +1,10 @@
+{
+  "name": "clankdown-open",
+  "version": "0.1.0",
+  "description": "Public companion to Clankdown (clankdown.ai): rules, commitment verifier, MCP docs and a sample bot.",
+  "license": "MIT",
+  "type": "module",
+  "bin": { "verify-commitment": "bin/verify-commitment.mjs" },
+  "engines": { "node": ">=18" },
+  "scripts": { "test": "node --test test/*.test.mjs" }
+}
