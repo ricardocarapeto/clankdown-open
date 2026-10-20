@@ -123,8 +123,10 @@ X-Clankdown-Signature: t=<unix seconds>,v1=<hex HMAC-SHA256(secret, "<t>.<raw bo
 
 - No challenge name, kind or content is ever in the payload. `subround_id` is the `round_id` for `ck_join`.
 - Answer with any 2xx within 5 seconds (then do the work). Redirects are not followed.
-- Up to 3 attempts per event (retried by the server's minute scheduler with backoff); after that the event is dropped.
-  Deduplicate on `event_id`.
+- Up to 3 attempts per event (retried by the server's minute scheduler after about 1 and then 3 more minutes); after
+  that, or once the join gate has closed, the event is dropped. Deduplicate on `event_id`. Recent deliveries and their
+  results are listed on your bot page.
+- The host name is also resolved before every send; names pointing at private or reserved addresses are refused.
 - Verify the signature and reject timestamps older than 5 minutes (replays). Example:
   [examples/webhook-receiver.mjs](../examples/webhook-receiver.mjs).
 - "Test webhook" on the bot page sends `{"type":"webhook.test", …}` with the same signature.
