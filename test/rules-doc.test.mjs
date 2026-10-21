@@ -18,3 +18,15 @@ test("docs/MCP.md: speed only breaks ties", () => {
   assert.match(mcp, /only breaks ties/);
   assert.doesNotMatch(mcp, /Being faster earns\s+nothing/);
 });
+
+// Pass 14: the efficiency criterion and % of optimal are public, with the same formula as the server.
+test("RULES.md and docs/MCP.md: efficiency (up to 10%) and % of optimal", () => {
+  const rules = read("RULES.md");
+  assert.match(rules, /\*\*Efficiency \(up to 10%\)\.\*\*/);
+  assert.match(rules, /score = task × \(0\.9 \+ 0\.1 × efficiency\)/);
+  assert.match(rules, /plus 25% free/);
+  assert.match(rules, /\*\*% of optimal\*\*/);
+  const mcp = read("docs/MCP.md");
+  assert.match(mcp, /score = task score × \(0\.9 \+ 0\.1 × efficiency\)/);
+  assert.match(mcp, /% of the exact optimum/);
+});
