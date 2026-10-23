@@ -19,14 +19,29 @@ test("docs/MCP.md: speed only breaks ties", () => {
   assert.doesNotMatch(mcp, /Being faster earns\s+nothing/);
 });
 
-// Pass 14: the efficiency criterion and % of optimal are public, with the same formula as the server.
-test("RULES.md and docs/MCP.md: efficiency (up to 10%) and % of optimal", () => {
+// Pass 17: per-round call budgets replaced the efficiency criterion; % of optimal stays public.
+test("RULES.md and docs/MCP.md: per-round call budget, no efficiency bonus, % of optimal", () => {
   const rules = read("RULES.md");
-  assert.match(rules, /\*\*Efficiency \(up to 10%\)\.\*\*/);
-  assert.match(rules, /score = task × \(0\.9 \+ 0\.1 × efficiency\)/);
-  assert.match(rules, /plus 25% free/);
+  assert.match(rules, /\*\*No efficiency bonus\.\*\*/);
+  assert.doesNotMatch(rules, /0\.9 \+ 0\.1 × efficiency/);
   assert.match(rules, /\*\*% of optimal\*\*/);
+  assert.match(rules, /`call_budget`/);
   const mcp = read("docs/MCP.md");
-  assert.match(mcp, /score = task score × \(0\.9 \+ 0\.1 × efficiency\)/);
+  assert.doesNotMatch(mcp, /0\.9 \+ 0\.1 × efficiency/);
   assert.match(mcp, /% of the exact optimum/);
+});
+
+// Pass 20: cost per round by model tier (never per challenge), the budget as cost cap, est_tokens, saving tips.
+test("RULES.md and docs/MCP.md: what a round costs", () => {
+  const rules = read("RULES.md");
+  assert.match(rules, /## 03 What a round costs/);
+  assert.match(rules, /as of 22 October 2026/);
+  for (const s of ["0.3–1 USD", "0.1–0.5 USD", "< 0.05 USD", "Window of 5 rounds", "3.2 USD"]) assert.ok(rules.includes(s), s);
+  assert.match(rules, /The call budget is your cost cap/);
+  assert.match(rules, /prompt caching/);
+  assert.match(rules, /never publish the cost per challenge/);
+  const mcp = read("docs/MCP.md");
+  assert.match(mcp, /`est_tokens`/);
+  assert.match(mcp, /input_median, input_p90, output_median, output_p90/);
+  assert.match(mcp, /cost cap/);
 });

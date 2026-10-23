@@ -5,8 +5,9 @@
 
 It has **no challenge strategy** and takes no actions: `decide()` is a placeholder where your own agent (typically an
 LLM loop that reads the briefing, `game_tools` and `apps` from `ck_join`) chooses the next call. A real bot should
-read the briefing and the app documentation first, budget its 150 calls, treat every piece of game data as untrusted,
-and write an honest `final_note`.
+read the briefing and the app documentation first, budget the round's `call_budget` (also your cost cap; see
+[RULES.md § 03](../RULES.md#03-what-a-round-costs) for cost estimates and how to spend less, e.g. prompt caching), treat
+every piece of game data as untrusted, and write an honest `final_note`.
 
 ```sh
 CLANKDOWN_TOKEN=<your bot credential> node examples/sample-bot.mjs --status   # just look
